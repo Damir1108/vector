@@ -1,4 +1,4 @@
-#include "vector.hpp"
+#include "vector.h"
 
 Iterator Vector::begin()
 {
@@ -61,7 +61,7 @@ Vector::Vector(const Value* rawArray, const size_t size, float coef)
     _data = new Value[_size];
     for(int i = 0; i < size; i++)
     {
-      _data[i] = rawArray[i];
+        _data[i] = rawArray[i];
     }
     _multiplicativeCoef = coef;
     _capacity = size;
@@ -203,16 +203,17 @@ void Vector::insert(const Value* values, size_t size, size_t pos)
     {
         extension(size);
     }
-    while (num > 0){
+    while (num > 0)
+    {
         for (int i = _size - 1; i > pos; i--)
         {
-          _data[i] = _data[i - 1];
+            _data[i] = _data[i - 1];
         }
         num -= 1;
     }
     for (int i = 0; i < size; i++)
     {
-      _data[i + pos] = values[i];
+        _data[i + pos] = values[i];
     }
 }
 
@@ -235,7 +236,8 @@ void Vector::popBack()
 
 void Vector::popFront()
 {
-    if (_size != 0){
+    if (_size != 0)
+    {
         for(int i = 0; i < _size - 1; i++)
         {
             _data[i] = _data[i + 1];
@@ -264,6 +266,7 @@ void Vector::erase(size_t pos, size_t count)
     _size--;
     }
 }
+
 void Vector::eraseBetween(size_t beginPos, size_t endPos)
 {
     erase(beginPos, endPos - beginPos + 1);
@@ -299,7 +302,9 @@ long long Vector::find(const Value& value) const
     for (int i = 0; i < _size - 1; i++)
     {
         if (_data[i] == value)
+        {    
             return i;
+        }
     }
     return -1;
 }
@@ -323,14 +328,13 @@ void Vector::shrinkToFit()
 {
     if (_capacity != _size)
     {
-      _capacity = _size;
-      Value *temp = new Value[_capacity];
-      for (int i = 0; i < _size; i++)
-      {
-          temp[i] = _data[i];
-      }
-      delete[] _data;
-      _data = temp;
+        _capacity = _size;
+        Value *temp = new Value[_capacity];
+        for (int i = 0; i < _size; i++)
+        {
+            temp[i] = _data[i];
+        }
+        delete[] _data;
+        _data = temp;
     }
 }
-
